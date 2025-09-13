@@ -1,0 +1,26 @@
+import java.util.HashMap;
+
+class findmostfrequentVowelandConsonant {
+    public int maxFreqSum(String s) {
+      Map<Character,Integer> map = new HashMap<Character,Integer>();  
+      for(char c:s.toCharArray()){
+        map.compute(c,(key,value)->value==null?1:value+1);
+      }
+      int maxv=0, maxc=0;
+
+      for(var p:map.entrySet()){
+        if("aeiou".contains(String.valueOf(p.getKey()))){
+            if(p.getValue()>maxv){
+                maxv = p.getValue();
+            }
+        }
+        if("bcdfghjklmnpqrstvwxyz".contains(String.valueOf(p.getKey()))){
+            if(p.getValue()>maxc){
+                maxc = p.getValue();
+            }
+        }
+
+      }
+    return maxc+maxv;
+    }
+}
