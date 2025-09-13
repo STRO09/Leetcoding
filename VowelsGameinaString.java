@@ -1,4 +1,4 @@
-// class Solution {
+// class VowelsGameinaString {
 
 //     public boolean Aliceturn(String s){
 //         long vowelcount = s.chars().filter(letter->"aAeEiIoOuU".indexOf(letter)!=-1).count();
@@ -51,7 +51,7 @@
 //     }
 // }
 
-class Solution {
+class VowelsGameinaString {
 
     public boolean doesAliceWin(String s) {
         for(char c:s.toCharArray()){
