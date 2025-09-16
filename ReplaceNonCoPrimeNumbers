@@ -1,0 +1,79 @@
+# my try
+
+
+# import java.util.List;
+# import java.util.ListIterator;
+# import java.util.ArrayList;
+# import java.util.Arrays;
+# import java.util.stream.Collectors;
+
+# class ReplaceNonCoPrimeNumbers {
+
+#     public static int findgcd(int a,int b){
+#         while(b!=0){
+#             int temp = b;
+#             b = a%b;
+#             a = temp;
+#         }
+#         return a;
+#     }
+#     public List<Integer> replaceNonCoprimes(int[] nums) {
+#         ArrayList<Integer> list = Arrays.stream(nums).boxed().collect(Collectors.toCollection(ArrayList::new));
+#         ListIterator<Integer> i = list.listIterator();
+#         outerloop:
+#         while(i.hasNext()){
+#             int current = i.next();
+#             int currentindex = i.nextIndex();
+#             if(i.hasNext()){
+#                 int next = i.next();
+#                 int gcd = findgcd(current,next);
+#                 if(gcd!=1) {
+#                     int lcm = gcd/(current*next);
+#                     i.remove(current);
+#                     i.remove(next);
+#                     i.add(lcm,currentindex);
+#                     goto outerloop;
+#                 }
+#             }
+#         }
+#         return list;
+#     }
+# }
+
+
+#how gpt corrected it and made it better. nice!
+
+import java.util.LinkedList;
+
+class ReplaceNonCoPrimeNumbers {
+
+    public static int findgcd(int a,int b){
+        while(b!=0){
+            int temp = b;
+            b = a%b;
+            a = temp;
+        }
+        return a;
+    }
+    public List<Integer> replaceNonCoprimes(int[] nums) {
+        LinkedList<Integer> stack = new LinkedList<Integer>();
+        for(int num: nums){
+            stack.addLast(num);
+            while(stack.size()>1){
+                int a = stack.removeLast();
+                int b = stack.removeLast();
+                int gcd = findgcd(a,b);
+                if(gcd>1){
+                    int lcm = (a / gcd) * b;
+                    stack.addLast(lcm);
+                }
+                else {
+                    stack.addLast(b);
+                    stack.addLast(a);
+                    break;
+                }
+            }
+        }
+        return stack;
+    }
+}
