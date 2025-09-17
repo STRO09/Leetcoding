@@ -53,7 +53,7 @@
 
 import java.util.*;
 
-class FoodRatings {
+class FoodRatingSystem {
     Map<String, Integer> foodToRating;
     Map<String, String> foodToCuisine;
     Map<String, TreeSet<Food>> cuisineToFoods;
